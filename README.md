@@ -33,10 +33,12 @@ Para executar o airflow em seu ambiente, basta seguir o passo a passo:
 ```sh
 cat > .env 
 ```
-2- Criar a variável de ambiente nesse arquivo
-```sh
-touch "export AIRFLOW_HOME=/home/seu_usuario/.../seu_projeto/" > .env
+2- Digitar o comando abaixo e pressionar Ctrl + z
+
 ```
+export AIRFLOW_HOME=/home/seu_usuario/.../seu_projeto/
+```
+
 3- Executar o .env
 ```sh
 source .env
