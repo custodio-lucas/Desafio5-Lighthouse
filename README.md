@@ -33,7 +33,10 @@ Para executar o airflow em seu ambiente, basta seguir o passo a passo:
 ```sh
 cat > .env 
 ```
-2- Digitar o comando abaixo e pressionar Ctrl + z
+
+Após isso arquivo abrirá no terminal como uma espécie de arquivo de texto.
+
+2- Digitar o comando abaixo, pressionar Enter e pressionar Ctrl + z para sair do arquivo
 
 ```
 export AIRFLOW_HOME=/home/seu_usuario/.../seu_projeto/
