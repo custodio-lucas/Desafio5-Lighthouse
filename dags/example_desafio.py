@@ -1,14 +1,17 @@
 import sqlite3
+import os
 import pandas as pd
-from airflow.utils.edgemodifier import Label
+#from airflow.utils.edgemodifier import Label
 from datetime import datetime, timedelta
-from textwrap import dedent
-from airflow.operators.bash import BashOperator
+#from textwrap import dedent
+#from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 from airflow import DAG
 from airflow.models import Variable
 
-db_path='/home/lucas/indicium/Desafio5/data/Northwind_small.sqlite'
+FILE_PATH = os.path.abspath(__file__)
+PROJECT_PATH = os.path.dirname(os.path.dirname(FILE_PATH))
+DB_PATH = os.path.join(PROJECT_PATH, 'data/Northwind_small.sqlite')
 
 # These args will get passed on to each operator
 # You can override them on a per-task basis during operator initialization
@@ -24,7 +27,7 @@ default_args = {
 
 def read_nw_orders():
 
-    conn = sqlite3.connect(db_path, isolation_level=None,
+    conn = sqlite3.connect(DB_PATH, isolation_level=None,
                            detect_types=sqlite3.PARSE_COLNAMES)
     df = pd.read_sql_query('select * from "Order"', conn)
     df.to_csv('output_orders.csv', index=False)
@@ -33,7 +36,7 @@ def read_nw_orders():
 
 def read_nw_od():
     
-    conn = sqlite3.connect(db_path, isolation_level=None,
+    conn = sqlite3.connect(DB_PATH, isolation_level=None,
                            detect_types=sqlite3.PARSE_COLNAMES)
     df_od = pd.read_sql_query('select * from "OrderDetail"', conn)
     df_o = pd.read_csv('/home/lucas/indicium/Desafio5/output_orders.csv')
